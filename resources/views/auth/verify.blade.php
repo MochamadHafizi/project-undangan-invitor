@@ -13,6 +13,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 </head>
 <body>
+    @include('sweetalert::alert')
+    
     <div class="container pt-20">
     <div class="w-full lg:w-2/3 lg:mx-auto">
         <div class="w-full px-4 mb-8">

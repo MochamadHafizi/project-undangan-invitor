@@ -7,6 +7,7 @@
   @vite('resources/css/app.css')
 </head>
 <body>
+  @include('sweetalert::alert')
   <section id="login" class="pt-20">
     <div class="container">
         <div class="w-full px-4">
@@ -48,7 +49,7 @@
             </div>
             <div class="w-full px-4 text-center mx-auto">
               <button
-                class="text-base font-semibold text-white bg-primary py-3 px-8 rounded-full w-50 hover:opacity-80 hover:shadow-lg transition duration-500"
+                class=" text-base font-semibold text-white bg-primary py-3 px-8 rounded-full w-50 hover:opacity-80 hover:shadow-lg transition duration-500"
               >
                 Masuk
               </button>
@@ -256,5 +257,9 @@
       </div>
     </footer>
     <!-- End Footer -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+
+    </script>
 </body>
 </html>

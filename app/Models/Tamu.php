@@ -9,12 +9,14 @@ class Tamu extends Model
 {
     use HasFactory;
      protected $fillable = [
+        'qr_code',
+        'undangan_id',
         'nama_tamu',
         'email_tamu',
     ];
 
     public function undangan()
     {
-        return $this->hasMany(Undangan::class);
+        return $this->belongsTo(Undangan::class);
     }
 }

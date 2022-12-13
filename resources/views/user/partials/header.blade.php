@@ -47,9 +47,9 @@
                 </li>
                 <li class="group">
                   <a
-                    href="{{ route('tamu.index') }}"
+                    href=""
                     class="text-base text-dark py-2 mx-8 flex group-hover:text-primary"
-                    >Daftar Tamu</a
+                    >Scanner</a
                   >
                 </li>
                 {{-- <li class="group">

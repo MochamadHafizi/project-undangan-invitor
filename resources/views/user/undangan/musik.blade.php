@@ -69,7 +69,7 @@
                       <div class="col-md-12">
                         <div class="text-bg">
                           <h3 class="text-white fw-bold">{{ $undangan->kategori->nama_kategori }}</h3>
-                          <h4 class="text-white fw-bold">Untuk: {{ $undangan->tamu->nama_tamu }}</h4>
+                          {{-- <h4 class="text-white fw-bold">Untuk: {{ $undangan->tamu->nama_tamu }}</h4> --}}
                           <h1>{{ $undangan->judul }}</h1>
                           <p>
                             {{ $undangan->deskripsi }}
@@ -195,6 +195,18 @@
         </div>
       </div>
     </div>
+
+    <section id="qr">
+      <div class="container">
+        <h3 class="text-center fw-bold mb-5 mt-5">Scan Kode</h3 >
+        <div class="visible-print text-center">
+          {!! QrCode::size(300)->generate(Request::url()); !!}
+      </div>
+        <div class="text-center">
+        <a href="{{ route('undangan.index') }}" class="btn btn-sm btn-danger rounded mt-5 mb-3">Kembali</a>
+        </div>
+      </div>
+    </section>
 
     <!-- end Gallery -->
 

@@ -1,5 +1,6 @@
 @extends('user.layouts.master')
 @section('content')
+@include('sweetalert::alert')
     <section id="undangan" class="pt-36 mb-40">
         <div class="container">
             <div class="flex flex-wrap">
@@ -7,12 +8,10 @@
                     <h1 class="text-base text-center font-bold text-primary md:text-xl">
                         Data Undangan
                     </h1>
-                        <div class="w-full overflow-x-auto">
+                        <div class="w-full overflow-x-auto ">
                     <a href="{{ route('undangan.create') }}" class="flex items-center px-2 py-2 w-20 text-sm font-medium leading-5 text-sky-500 bg-sky-100 mb-5 rounded-lg focus:outline-none focus:shadow-outline-gray">Tambah</a>
                     @if ($message = Session::get('success'))
-                        <div class="alert alert-success">
-                            <p>{{ $message }}</p>
-                        </div>
+                        
                     @endif
                     <table class="w-full whitespace-no-wrap">
                     <thead>
@@ -21,7 +20,6 @@
                         >
                         <th class="px-4 py-3">No</th>
                         <th class="px-4 py-3">Nama Pemilik</th>
-                        <th class="px-4 py-3">Nama Tamu</th>
                         <th class="px-4 py-3">Kategori Undangan</th>
                         <th class="px-4 py-3">Judul</th>
                         <th class="px-4 py-3">Deskripsi</th>
@@ -39,7 +37,6 @@
                         <tr class="text-gray-700">
                         <td class="px-4 py-3 text-sm">{{ ++$i }}</td>
                         <td class="px-4 py-3 text-sm">{{ $item->user->name }}</td>
-                        <td class="px-4 py-3 text-sm">{{ $item->tamu->nama_tamu }}</td>
                         <td class="px-4 py-3 text-sm">{{ $item->kategori->nama_kategori }}</td>
                         <td class="px-4 py-3 text-sm">{{ $item->judul }}</td>
                         <td class="px-4 py-3 text-sm">{{ $item->deskripsi }}</td>
@@ -85,10 +82,22 @@
                                 </svg>
                             </button>
                             <a
-                                href="{{ route('undangan.show',$item->id) }}" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-green-500 bg-green-100 rounded-lg focus:outline-none focus:shadow-outline-gray"
+                                href="{{ route('data_tamu', $item->id) }}" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-green-500 bg-green-100 rounded-lg focus:outline-none focus:shadow-outline-gray"
                                 aria-label="Edit"
                             >
-                                <i class="bi bi-eye-fill"></i>
+                               <i class="bi bi-people-fill"></i> Tamu
+                            </a>
+                             <a
+                                href="{{ route('send_mail', $item->id) }}" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-sky-500 bg-sky-100 rounded-lg focus:outline-none focus:shadow-outline-gray"
+                                aria-label="Kirim Email"
+                            >
+                               <i class="bi bi-envelope-fill"></i>
+                            </a>
+                            <a
+                                href="{{ route('undangan.show', $item->id) }}" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-sky-500 bg-sky-100 rounded-lg focus:outline-none focus:shadow-outline-gray"
+                                aria-label="Kirim Email"
+                            >
+                               <i class="bi bi-eye-fill"></i>
                             </a>
                             </div>
                         </td>

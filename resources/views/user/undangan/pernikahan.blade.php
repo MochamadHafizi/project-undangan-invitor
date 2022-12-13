@@ -66,7 +66,7 @@
                     class="text-uppercase font-weight-normal text-white m-0"
                     style="letter-spacing: 2px"
                   >
-                  Kepada Saudara: {{ $undangan->tamu->nama_tamu }}
+                  {{-- Kepada Saudara: {{ $undangan->tamu->nama_tamu }} --}}
               </h5>
                 </div>
                   <span></span>
@@ -100,7 +100,7 @@
                     class="text-uppercase font-weight-normal text-white m-0"
                     style="letter-spacing: 2px"
                   >
-                    Kepada Saudara: {{ $undangan->tamu->nama_tamu }}
+                    {{-- Kepada Saudara: {{ $undangan->tamu->nama_tamu }} --}}
                   </h5>
                 </div>
                   <span></span>
@@ -175,7 +175,17 @@
       </div>
     </div>
     <!-- Event End -->
-
+    <div class="container-fluid py-5"  id="event">
+      <div class="container py-5">
+        <h3 class="text-center fw-bold mb-5">Scan Kode</h3 >
+        <div class="visible-print text-center">
+          {!! QrCode::size(300)->generate(Request::url()); !!}
+      </div>
+      <div class="text-center">
+      <a href="{{ route('undangan.index') }}" class="btn btn-sm btn-danger rounded mt-5">Kembali</a>
+      </div>
+      </div>
+    </div>
 
     <!-- Scroll to Bottom -->
     <i class="fa fa-2x fa-angle-down text-white scroll-to-bottom"></i>

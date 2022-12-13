@@ -9,10 +9,9 @@ class Undangan extends Model
 {
     use HasFactory;
 
-    protected $with=['tamu','user','kategori'];
+    protected $with=['user','kategori'];
     protected $fillable = [
         'user_id',
-        'tamu_id',
         'kategori_id',
         'judul',
         'deskripsi',
@@ -24,7 +23,7 @@ class Undangan extends Model
 
     public function tamu()
     {
-        return $this->belongsTo(Tamu::class);
+        return $this->hasMany(Tamu::class);
     }
      public function user()
     {

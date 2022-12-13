@@ -4,9 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-     <link rel="icon" href="img/logoWhite.png" />
+    <link rel="icon" href="img/logoWhite.png" />
+    {{-- animate on scroll --}}
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     @vite('resources/css/app.css')
-    <title>Invitor User</title>
+    <title>Invitor Landing Page</title>
   </head>
   <body>
     <!-- Header -->
@@ -96,7 +98,7 @@
     <section id="home" class="pt-36">
       <div class="container circle">
         <div class="flex flex-wrap">
-          <div class="w-full self-center px-4 lg:w-1/2">
+          <div class="w-full self-center px-4 lg:w-1/2" data-aos="fade-right">
             <h1 class="text-base font-semibold text-primary md:text-xl">
               Halo Semuanya, Kami
               <span class="block font-bold text-dark text-4xl mt-1 lg:text-5xl">
@@ -115,7 +117,7 @@
               >Buat Undangan Sekarang!</a
             >
           </div>
-          <div class="w-full self-end px-4 lg:w-1/2">
+          <div class="w-full self-end px-4 lg:w-1/2" data-aos="fade-left">
             <div class="relative mt-5 lg:mt-0 lg:right-0">
               <img
                 src="img/ilustrasi.jpg"
@@ -130,7 +132,7 @@
     <!-- Hero Section Ends -->
 
     <!-- About Section -->
-    <section id="about" class="pt-36 pb-32">
+    <section id="about" data-aos="zoom-in-up" class="pt-36 pb-32">
       <div class="container">
         <div class="flex flex-wrap">
           <div class="w-full px-4 mb-10 lg:w-1/2">
@@ -338,7 +340,7 @@
     <section id="blog" class="pt-36 pb-32 bg-slate-100">
       <div class="container">
         <div class="w-full px-4">
-          <div class="max-w-xl mx-auto text-center mb-16">
+          <div class="max-w-xl mx-auto text-center mb-16" data-aos="zoom-in">
             <h4 class="font-semibold text-lg text-primary mb-2">Tema</h4>
             <h2
               class="font-bold text-dark text-3xl mb-4 sm:text-4xl lg:text-5xl"
@@ -351,7 +353,7 @@
             </p>
           </div>
         </div>
-        <div class="flex flex-wrap">
+        <div class="flex flex-wrap" data-aos="flip-left">
           <div class="w-full px-4 lg:w-1/2 xl:w-1/3">
             <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-10">
               <img
@@ -615,5 +617,9 @@
     </footer>
     <!-- End Footer -->
     <script src="js/script.js"></script>
+      <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
   </body>
 </html>

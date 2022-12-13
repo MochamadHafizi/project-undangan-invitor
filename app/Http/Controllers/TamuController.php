@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tamu;
+use App\Models\Undangan;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class TamuController extends Controller
@@ -12,10 +14,12 @@ class TamuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $tamu = Tamu::latest()->get();
-        return view('user.tamu.index', compact('tamu'))->with('i', (request()->input('page', 1) - 1) * 5);
+        // $undangan = Undangan::latest()->get();
+        $tamu = Tamu::all()->where('undangan_id', '=', $id);
+        // dd($tamu);
+        return view('user.tamu.index', compact('tamu', 'id'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -23,9 +27,11 @@ class TamuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        return view('user.tamu.create');
+        $tamu = Tamu::latest()->get();
+        $undangan = Undangan::latest()->get();
+        return view('user.tamu.create', compact('tamu','undangan', 'id'));
     }
 
     /**
@@ -34,14 +40,22 @@ class TamuController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
+        $qr_code = Str::random(20);
+        // dd($request);
         $request->validate([
+            'undangan_id' => 'required',
             'nama_tamu' => 'required',
             'email_tamu' => 'required',
         ]);
-         Tamu::create($request->all());
-        return redirect()->route('tamu.index')->with('success','Tamu has been created successfully.');
+         Tamu::create([
+            'qr_code' => $qr_code,
+            'undangan_id' => $request['undangan_id'],
+            'nama_tamu' => $request['nama_tamu'],
+            'email_tamu' => $request['email_tamu'],
+        ]);
+        return redirect()->route('data_tamu', $id)->with('success','Tamu has been created successfully.');
     }
 
     /**
@@ -61,9 +75,9 @@ class TamuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tamu $tamu)
+    public function edit(Tamu $tamu, $id)
     {
-        return view('user.tamu.edit', compact('tamu'));
+        // return view('user.tamu.edit', compact('tamu'));
     }
 
     /**
@@ -73,17 +87,18 @@ class TamuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tamu $tamu)
-    {
-        $request->validate([
-            'nama_tamu' => 'required',
-            'email_tamu' => 'required'
-        ]);
+    // public function update(Request $request, Tamu $tamu, $id)
+    // {
+    //     $request->validate([
+    //         'nama_tamu' => 'required',
+    //         'undangan_id' => 'required',
+    //         'email_tamu' => 'required'
+    //     ]);
         
-        $tamu->fill($request->post())->save();
+    //     $tamu->fill($request->post())->save();
 
-        return redirect()->route('tamu.index')->with('success','Tamu Has Been updated successfully');
-    }
+    //     return redirect()->route('data_tamu', $id)->with('success','Tamu Has Been updated successfully');
+    // }
 
     /**
      * Remove the specified resource from storage.
@@ -91,9 +106,11 @@ class TamuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tamu $tamu)
+    public function destroy($id, $id_tamu)
     {
-         $tamu->delete();
-        return redirect()->route('tamu.index')->with('success','tamu has been deleted successfully');
+        $tamu = Tamu::all()->where('id', '=', $id_tamu);
+        $data =  $tamu->each->delete($tamu);
+        // dd($data);
+        return redirect()->route('data_tamu', $id);
     }
 }

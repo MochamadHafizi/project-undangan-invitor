@@ -12,32 +12,8 @@
                 @method('PUT')
                         <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md">
                             <div class="relative z-0 mb-6 w-full group">
-                                <label class="block mt-4 text-sm">
-                                    <span class="text-gray-700">
-                                    Nama Pemilik
-                                    </span>
-                                    <select
-                                    class="block w-full mt-1 text-sm form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple"
-                                    name="user_id" value="{{ $undangan->user_id }}">
-                                    @foreach ($data_pemilik as $item)
-                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                    @endforeach
-                                    </select>
-                                </label>
-                            </div>
-                            <div class="relative z-0 mb-6 w-full group">
-                                <label class="block mt-4 text-sm">
-                                    <span class="text-gray-700">
-                                    Nama Tamu
-                                    </span>
-                                    <select
-                                    class="block w-full mt-1 text-sm form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple"
-                                    name="tamu_id" value="{{ $undangan->tamu_id }}">
-                                    @foreach ($data_tamu as $item)
-                                    <option value="{{ $item->id }}">{{ $item->nama_tamu }}</option>
-                                    @endforeach
-                                    </select>
-                                </label>
+                                <input type="text" value="{{ Auth::user()->id }}" name="user_id"  id="user_id" class="hidden cursor-not-allowed block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder="{{ Auth::user()->name }}" required />
+                                <label for="user_id" class="hidden peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nama Pemilik</label>
                             </div>
                             <div class="relative z-0 mb-6 w-full group">
                                 <label class="block mt-4 text-sm">

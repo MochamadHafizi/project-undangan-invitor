@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -47,12 +47,12 @@ class LoginController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-   
+        
         if(auth()->attempt(array('email' => $inputVal['email'], 'password' => $inputVal['password']))){
             if (auth()->user()->is_admin == 1) {
-                return redirect()->route('admin.route');
+                return redirect()->route('admin.route')->with('success','Login Berhasil');
             }else{
-                return redirect()->route('home');
+                return redirect()->route('home')->with('success', 'Login Berhasil');
             }
         }else{
             return redirect()->route('login')

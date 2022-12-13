@@ -7,7 +7,7 @@
                     <h1 class="text-base text-center font-bold text-primary md:text-xl">
                        Edit Data Tamu
                     </h1>
-                    <form action="{{ route('tamu.update', $tamu->id) }}" method="post">
+                    <form action="{{ route('ubah_tamu', $id) }}" method="post">
                 @csrf
                 @method('PUT')
                         <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md">

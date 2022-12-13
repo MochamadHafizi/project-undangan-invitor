@@ -1,5 +1,6 @@
 @extends('user.layouts.master')
 @section('content')
+@include('sweetalert::alert')
     <section id="tamu" class="pt-36 mb-32">
         <div class="container">
             <div class="flex flex-wrap">
@@ -9,11 +10,9 @@
                     </h1>
                     <div class="w-full overflow-hidden rounded-lg shadow-xs">
               <div class="w-full overflow-x-auto">
-                <a href="{{ route('tamu.create') }}" class="flex items-center px-2 py-2 w-20 text-sm font-medium leading-5 text-sky-500 bg-sky-100 mb-5 rounded-lg focus:outline-none focus:shadow-outline-gray">Tambah Tamu+</a>
+                <a href="{{ route('create_tamu', $id) }}" class="flex items-center px-2 py-2 w-20 text-sm font-medium leading-5 text-sky-500 bg-sky-100 mb-5 rounded-lg focus:outline-none focus:shadow-outline-gray">Tambah Tamu+</a>
                  @if ($message = Session::get('success'))
-                    <div class="alert alert-success">
-                        <p>{{ $message }}</p>
-                    </div>
+                   
                 @endif
                 <table class="w-full whitespace-no-wrap mb-30">
                   <thead>
@@ -21,6 +20,8 @@
                       class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b bg-gray-100"
                     >
                       <th class="px-4 py-3">No</th>
+                      {{-- <th class="px-4 py-3">QR Code</th> --}}
+                      <th class="px-4 py-3">Id Undangan</th>
                       <th class="px-4 py-3">Nama Tamu</th>
                       <th class="px-4 py-3">Email Tamu</th>
                       <th class="px-4 py-3">Tanggal Dibuat</th>
@@ -33,16 +34,22 @@
                     class="bg-white divide-y"
                   >
                     <tr class="text-gray-700">
-                        <td class="px-4 py-3 text-sm" scope="row">{{ ++$i }}</td>
+                      <td class="px-4 py-3 text-sm" scope="row">{{ ++$i }}</td>
+                      {{-- <td class="px-4 py-3 text-sm">
+                        <div class="visible-print text-center">
+                            {!! QrCode::size(50)->generate($item->qr_code); !!}
+                        </div>
+                      </td> --}}
+                      <td class="px-4 py-3 text-sm">{{ $item->undangan_id }}</td>
                       <td class="px-4 py-3 text-sm">{{ $item->nama_tamu }}</td>
                       <td class="px-4 py-3 text-sm">{{ $item->email_tamu }}</td>
                       <td class="px-4 py-3 text-sm">{{ $item->created_at }}</td>
                       <td class="px-4 py-3 text-sm">{{ $item->updated_at }}</td>
                       <td class="px-4 py-3">
-                        <form action="{{ route('tamu.destroy',$item->id) }}" method="Post">
+                        <form action="{{ route('delete_tamu',['id_tamu' => $item->id, 'id' => $id]) }}" method="Post">
                         <div class="flex items-center space-x-4 text-sm">
-                          <a
-                            href="{{ route('tamu.edit',$item->id) }}" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-yellow-500 bg-yellow-100 rounded-lg focus:outline-none focus:shadow-outline-gray"
+                          {{-- <a
+                            href="{{ route('edit_tamu', $id) }}" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-yellow-500 bg-yellow-100 rounded-lg focus:outline-none focus:shadow-outline-gray"
                             aria-label="Edit"
                           >
                             <svg
@@ -55,7 +62,8 @@
                                 d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"
                               ></path>
                             </svg>
-                          </a>
+                          </a> --}}
+                          
                           @csrf
                                 @method('DELETE')
                           <button
@@ -75,6 +83,7 @@
                               ></path>
                             </svg>
                           </button>
+                          
                         </div>
                       </td>
                       </form>

@@ -40,7 +40,7 @@ class KategoriController extends Controller
             'nama_kategori' => 'required',
         ]);
          Kategori::create($request->all());
-        return redirect()->route('kategori.index')->with('success','Kategori has been created successfully.');
+        return redirect()->route('kategori.index')->with('success','Kategori Berhasil Ditambahkan.');
     }
 
     /**
@@ -80,7 +80,7 @@ class KategoriController extends Controller
         
         $kategori->fill($request->post())->save();
 
-        return redirect()->route('kategori.index')->with('success','Kategori Has Been updated successfully');
+        return redirect()->route('kategori.index')->with('success','Kategori Telah Diupdate');
     }
 
     /**
@@ -92,6 +92,6 @@ class KategoriController extends Controller
     public function destroy(Kategori $kategori)
     {
          $kategori->delete();
-        return redirect()->route('kategori.index')->with('success','Kategori has been deleted successfully');
+        return redirect()->route('kategori.index');
     }
 }

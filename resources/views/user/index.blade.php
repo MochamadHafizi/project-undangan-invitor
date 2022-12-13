@@ -1,12 +1,13 @@
 @extends('user.layouts.master')
 @section('content')
+@include('sweetalert::alert')
 <!-- Hero Section -->
     <section id="home" class="pt-36">
       <div class="container circle">
         <div class="flex flex-wrap">
           <div class="w-full self-center px-4 lg:w-1/2">
             <h1 class="text-base font-semibold text-primary md:text-xl">
-              Halo Semuanya, Kami
+              Selamat Datang {{ Auth::user()->name }}, Buat Undanganmu di
               <span class="block font-bold text-dark text-4xl mt-1 lg:text-5xl">
                 Invitor.</span
               >

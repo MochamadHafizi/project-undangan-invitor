@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\MyTestMail;
 use App\Models\Kategori;
 use App\Models\Tamu;
 use App\Models\Undangan;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class UndanganController extends Controller
 {
@@ -29,9 +31,8 @@ class UndanganController extends Controller
     public function create()
     {
         $data_pemilik = User::all();
-        $data_tamu = Tamu::all();
         $data_kategori = Kategori::all();
-        return view('user.undangan.create', compact('data_pemilik', 'data_tamu','data_kategori'));
+        return view('user.undangan.create', compact('data_pemilik','data_kategori'));
     }
 
     /**
@@ -44,7 +45,6 @@ class UndanganController extends Controller
     {
         $request->validate([
             'user_id' => 'required',
-            'tamu_id' => 'required',
             'kategori_id' => 'required',
             'judul' => 'required',
             'deskripsi' => 'required',
@@ -54,7 +54,8 @@ class UndanganController extends Controller
             'susunan_acara' => 'required',
         ]);
         Undangan::create($request->all());
-        return redirect()->route('undangan.index')->with('success','Undangan has been created successfully.');
+        // dd($request);
+        return redirect()->route('undangan.index')->with('success','Undangan Berhasil Ditambahkan');
     }
 
     /**
@@ -68,10 +69,10 @@ class UndanganController extends Controller
         if ($undangan->kategori_id == 1) {
             return view('user.undangan.pernikahan',compact('undangan'));
         }elseif ($undangan->kategori_id == 2) {
-            return view('user.undangan.musik',compact('undangan'));
+            return view('user.undangan.seminar',compact('undangan'));
         }
         elseif ($undangan->kategori_id == 3) {
-            return view('user.undangan.ultah',compact('undangan'));
+            return view('user.undangan.musik',compact('undangan'));
         }
         else {
             return view('user.undangan.index');
@@ -87,9 +88,8 @@ class UndanganController extends Controller
     public function edit(Undangan $undangan)
     {
          $data_pemilik = User::all();
-        $data_tamu = Tamu::all();
         $data_kategori = Kategori::all();
-        return view('user.undangan.edit', compact('data_pemilik', 'data_tamu','data_kategori','undangan'));
+        return view('user.undangan.edit', compact('data_pemilik','data_kategori','undangan'));
     }
 
     /**
@@ -103,7 +103,6 @@ class UndanganController extends Controller
     {
         $request->validate([
             'user_id' => 'required',
-            'tamu_id' => 'required',
             'kategori_id' => 'required',
             'judul' => 'required',
             'deskripsi' => 'required',
@@ -115,7 +114,7 @@ class UndanganController extends Controller
         
         $undangan->fill($request->post())->save();
 
-        return redirect()->route('undangan.index')->with('success','undangan Has Been updated successfully');
+        return redirect()->route('undangan.index')->with('success','Undangan Berhasil Diubah');
     }
 
     /**
@@ -127,6 +126,12 @@ class UndanganController extends Controller
     public function destroy(Undangan $undangan)
     {
         $undangan->delete();
-        return redirect()->route('undangan.index')->with('success','Undangan deleted');
+        return redirect()->route('undangan.index');
     }
+
+    // public function admin(){
+    //     $undangan = Undangan::latest()->get();
+    //     return view('admin.undangan.index', compact('undangan'))->with('i', (request()->input('page', 1) - 1) * 5);
+    // }
+
 }

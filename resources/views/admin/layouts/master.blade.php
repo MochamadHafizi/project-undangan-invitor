@@ -7,6 +7,7 @@
     <title>Invitor | Admin</title>
     <link rel="stylesheet" href="admin/css/tailwind.output.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+      
     <script
       src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
       defer

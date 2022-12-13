@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\DataUserController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InviteController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\TamuController;
 use App\Http\Controllers\UndanganController;
 use Illuminate\Support\Facades\Auth;
@@ -30,5 +32,10 @@ Route::get('admin/home', 'handleAdmin')->name('admin.route')->middleware('admin'
 });
 Route::resource('dataUser', DataUserController::class);
 Route::resource('kategori', KategoriController::class);
-Route::resource('tamu', TamuController::class);
+Route::get('tamu/{id}', [TamuController::class, 'index'])->name('data_tamu');
+Route::get('tamu/{id}/create', [TamuController::class, 'create'])->name('create_tamu');
+Route::post('tamu/simpan/{id}', [TamuController::class, 'store'])->name('simpan_tamu');
+Route::delete('tamu/delete/{id}/{id_tamu}', [TamuController::class, 'destroy'])->name('delete_tamu');
 Route::resource('undangan', UndanganController::class);
+Route::get('send-mail', [MailController::class, 'index'])->name('send_mail');
+// Route::get('/admin/undangan', [UndanganController::class], 'admin')->name('admin');

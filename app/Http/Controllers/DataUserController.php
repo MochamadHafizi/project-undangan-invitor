@@ -49,7 +49,7 @@ class DataUserController extends Controller
             'is_admin' => $request['is_admin'],
             'password' => Hash::make($request['password']),
         ]);
-        return redirect()->route('dataUser.index')->with('success','User has been created successfully.');
+        return redirect()->route('dataUser.index')->with('success','User Berhasil Ditambahkan.');
     }
 
     /**
@@ -87,15 +87,13 @@ class DataUserController extends Controller
             'name' => 'required',
             'email' => 'required',
             'is_admin' => 'required',
-            'password' => 'required'
         ]);
         $dataUser->fill([
             'name' => $request['name'],
             'email' => $request['email'],
             'is_admin' => $request['is_admin'],
-            'password' => Hash::make($request['password']),
         ])->save();
-        return redirect()->route('dataUser.index')->with('success','dataUser has been updated');
+        return redirect()->route('dataUser.index')->with('success','User Telah Diupdate');
     }
 
     /**
@@ -107,6 +105,6 @@ class DataUserController extends Controller
     public function destroy(User $dataUser)
     {
         $dataUser->delete();
-        return redirect()->route('dataUser.index')->with('success','Data User deleted');
+        return redirect()->route('dataUser.index');
     }
 }
