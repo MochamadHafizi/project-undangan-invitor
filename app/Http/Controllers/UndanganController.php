@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\MyTestMail;
 use App\Models\Kategori;
+use App\Models\SusunanAcara;
 use App\Models\Tamu;
 use App\Models\Undangan;
 use App\Models\User;
@@ -51,7 +52,6 @@ class UndanganController extends Controller
             'waktu' => 'required',
             'jam' => 'required',
             'tempat' => 'required',
-            'susunan_acara' => 'required',
         ]);
         Undangan::create($request->all());
         // dd($request);
@@ -66,13 +66,15 @@ class UndanganController extends Controller
      */
     public function show(Undangan $undangan)
     {
+        $tamu = Tamu::latest()->get();
+        $acara = SusunanAcara::latest()->get();
         if ($undangan->kategori_id == 1) {
-            return view('user.undangan.pernikahan',compact('undangan'));
+            return view('user.undangan.pernikahan',compact('undangan', 'tamu', 'acara'));
         }elseif ($undangan->kategori_id == 2) {
-            return view('user.undangan.seminar',compact('undangan'));
+            return view('user.undangan.seminar',compact('undangan', 'tamu', 'acara'));
         }
         elseif ($undangan->kategori_id == 3) {
-            return view('user.undangan.musik',compact('undangan'));
+            return view('user.undangan.musik',compact('undangan', 'tamu', 'acara'));
         }
         else {
             return view('user.undangan.index');
@@ -109,7 +111,6 @@ class UndanganController extends Controller
             'waktu' => 'required',
             'jam' => 'required',
             'tempat' => 'required',
-            'susunan_acara' => 'required',
         ]);
         
         $undangan->fill($request->post())->save();

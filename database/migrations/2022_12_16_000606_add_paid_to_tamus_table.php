@@ -13,15 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tamus', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('undangan_id')->nullable()->constrained('undangans');
+        Schema::table('tamus', function (Blueprint $table) {
             $table->unsignedBigInteger('kategori_id');
-            $table->foreign('kategori_id')->references('id')->on('kategoris');
-            $table->string('qr_code');
-            $table->string('nama_tamu');
-            $table->string('email_tamu');
-            $table->timestamps();
+            $table->foreign('kategori_id')->references('id')->on('kategoris')->nullable();
         });
     }
 
@@ -32,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tamus');
+        Schema::table('tamus', function (Blueprint $table) {
+            //
+        });
     }
 };

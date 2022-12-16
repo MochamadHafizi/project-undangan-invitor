@@ -24,7 +24,6 @@ return new class extends Migration
             $table->date('waktu');
             $table->time('jam');
             $table->string('tempat');
-            $table->string('susunan_acara');
             $table->timestamps();
         });
     }

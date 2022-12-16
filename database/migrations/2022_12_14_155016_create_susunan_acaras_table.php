@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('susunan_acaras', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('undangan_id');
+            $table->foreign('undangan_id')->references('id')->on('undangans');
             $table->string('nama_acara');
             $table->time('jam');
-            $table->string('pengisi_acara');
             $table->timestamps();
         });
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
 use App\Models\Tamu;
 use App\Models\Undangan;
 use Illuminate\Support\Str;
@@ -29,9 +30,10 @@ class TamuController extends Controller
      */
     public function create($id)
     {
+        $kategori = Kategori::latest()->get();
         $tamu = Tamu::latest()->get();
         $undangan = Undangan::latest()->get();
-        return view('user.tamu.create', compact('tamu','undangan', 'id'));
+        return view('user.tamu.create', compact('tamu','undangan', 'id', 'kategori'));
     }
 
     /**
@@ -46,16 +48,18 @@ class TamuController extends Controller
         // dd($request);
         $request->validate([
             'undangan_id' => 'required',
+            'kategori_id' => 'required',
             'nama_tamu' => 'required',
             'email_tamu' => 'required',
         ]);
          Tamu::create([
             'qr_code' => $qr_code,
             'undangan_id' => $request['undangan_id'],
+            'kategori_id' => $request['kategori_id'],
             'nama_tamu' => $request['nama_tamu'],
             'email_tamu' => $request['email_tamu'],
         ]);
-        return redirect()->route('data_tamu', $id)->with('success','Tamu has been created successfully.');
+        return redirect()->route('data_tamu', $id)->with('success','Tamu Berhasil Ditambahkan');
     }
 
     /**
@@ -64,9 +68,27 @@ class TamuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, Tamu $tamu)
     {
-        //
+
+        // $tamu = Tamu::all()->where('undangan_id', '=', $id);
+
+        $tamu = Undangan::join('tamus', 'tamus.undangan_id', '=', 'undangans.id')
+                        ->join('kategoris', 'kategoris.id', '=', 'undangans.kategori_id')
+                        ->join('susunan_acaras', 'susunan_acaras.undangan_id', '=', 'undangans.id')
+                        ->get(['undangans.*', 'tamus.*', 'kategoris.*','susunan_acaras.*'])->where('undangan_id', '=', $id);
+        if ($tamu->kategori_id == 1) {
+            return view('user.undangan.pernikahan',compact('tamu'));
+        }elseif ($tamu->kategori_id == 2) {
+            return view('user.undangan.seminar',compact('tamu'));
+        }
+        elseif ($tamu->kategori_id == 3) {
+            return view('user.undangan.musik',compact('tamu'));
+        }
+        else {
+            return view('user.undangan.index');
+        }
+
     }
 
     /**
@@ -113,4 +135,5 @@ class TamuController extends Controller
         // dd($data);
         return redirect()->route('data_tamu', $id);
     }
+    
 }

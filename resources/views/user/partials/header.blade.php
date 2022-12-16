@@ -33,7 +33,7 @@
               <ul class="block lg:flex">
                 <li class="group">
                   <a
-                    href="#home"
+                    href="{{ route('home') }}"
                     class="text-base text-dark py-2 mx-8 flex group-hover:text-primary"
                     >Beranda</a
                   >
@@ -47,7 +47,7 @@
                 </li>
                 <li class="group">
                   <a
-                    href=""
+                    href="{{ route('scan') }}"
                     class="text-base text-dark py-2 mx-8 flex group-hover:text-primary"
                     >Scanner</a
                   >

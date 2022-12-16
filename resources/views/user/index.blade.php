@@ -7,7 +7,7 @@
         <div class="flex flex-wrap">
           <div class="w-full self-center px-4 lg:w-1/2">
             <h1 class="text-base font-semibold text-primary md:text-xl">
-              Selamat Datang {{ Auth::user()->name }}, Buat Undanganmu di
+              Selamat Datang <span class="text-emerald-700">{{ Auth::user()->name }}</span><br>
               <span class="block font-bold text-dark text-4xl mt-1 lg:text-5xl">
                 Invitor.</span
               >

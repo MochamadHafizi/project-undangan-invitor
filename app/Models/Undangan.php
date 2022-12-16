@@ -18,7 +18,6 @@ class Undangan extends Model
         'waktu',
         'jam',
         'tempat',
-        'susunan_acara'
     ];
 
     public function tamu()

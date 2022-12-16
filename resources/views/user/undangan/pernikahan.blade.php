@@ -100,7 +100,7 @@
                     class="text-uppercase font-weight-normal text-white m-0"
                     style="letter-spacing: 2px"
                   >
-                    {{-- Kepada Saudara: {{ $undangan->tamu->nama_tamu }} --}}
+                    {{-- Kepada Saudara: {{ $tamu->nama_tamu }} --}}
                   </h5>
                 </div>
                   <span></span>
@@ -163,7 +163,7 @@
             </div>
           </div>
         </div>
-        <div class="row justify-content-center">
+        {{-- <div class="row justify-content-center">
           <div class="col-md-6">
             <div class="text-center">
               <img class="img-fluid mb-4" src="/pernikahan/img/event-1.jpg" alt="" />
@@ -171,7 +171,13 @@
               <p class="mb-2">{{ $undangan->susunan_acara }}</p>
             </div>
           </div>
-        </div>
+        </div> --}}
+      </div>
+    </div>
+    <div class="container-fluid py-5"  id="event">
+      <div class="container py-5">
+        <h3 class="text-center fw-bold mb-5">Map Lokasi</h3 >
+          <div class="mapouter"><div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=628&amp;height=400&amp;hl=en&amp;q={{ $undangan->tempat }}&amp;t=&amp;z=17&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://piratebay-proxys.com/">Piratebay</a></div><style>.mapouter{position:relative;text-align:right;width:100%;height:400px;}.gmap_canvas {overflow:hidden;background:none!important;width:100%;height:400px;}.gmap_iframe {height:400px!important;}</style></div>
       </div>
     </div>
     <!-- Event End -->

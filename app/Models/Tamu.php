@@ -11,6 +11,7 @@ class Tamu extends Model
      protected $fillable = [
         'qr_code',
         'undangan_id',
+        'kategori_id',
         'nama_tamu',
         'email_tamu',
     ];
@@ -18,5 +19,10 @@ class Tamu extends Model
     public function undangan()
     {
         return $this->belongsTo(Undangan::class);
+    }
+
+    public function kategori()
+    {
+        return $this->belongsTo(Kategori::class);
     }
 }

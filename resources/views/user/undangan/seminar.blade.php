@@ -90,6 +90,16 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-8">
+            <h1 class="my-5">Map Lokasi</h1>
+            <div class="mapouter" style="margin-bottom: 7em;"><div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=628&amp;height=400&amp;hl=en&amp;q={{ $undangan->tempat }}&amp;t=&amp;z=17&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://piratebay-proxys.com/">Piratebay</a></div><style>.mapouter{position:relative;text-align:right;width:100%;height:400px;}.gmap_canvas {overflow:hidden;background:none!important;width:100%;height:400px;}.gmap_iframe {height:400px!important;}</style></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
             <h3 class="fw-bold text-center">Scan</h3>
             <div class="visible-print text-center">
           {!! QrCode::size(300)->generate(Request::url()); !!}

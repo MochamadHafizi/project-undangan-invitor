@@ -11,8 +11,22 @@
                 @csrf
                         <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md">
                            <div class="relative z-0 mb-6 w-full group">
-                                <input type="text" name="undangan_id" value="{{ $id }}" id="undangan_id" class="cursor-not-allowed block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                                <label for="undangan_id" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nama tamu</label>
+                                <input type="text" name="undangan_id" value="{{ $id }}" id="undangan_id" class="hidden cursor-not-allowed block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                <label for="undangan_id" class="hidden peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">ID tamu</label>
+                            </div>
+                            <div class="relative z-0 mb-6 w-full group">
+                                <label class="block mt-4 text-sm">
+                                    <span class="text-gray-700">
+                                    Pilih Kategori
+                                    </span>
+                                    <select
+                                    class="block w-full mt-1 text-sm form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple"
+                                    name="kategori_id">
+                                    @foreach ($kategori as $item)
+                                    <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
+                                    @endforeach
+                                    </select>
+                                </label>
                             </div>
                             <div class="relative z-0 mb-6 w-full group">
                                 <input type="text" name="nama_tamu" id="nama_tamu" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />

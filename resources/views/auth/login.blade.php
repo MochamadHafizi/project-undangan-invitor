@@ -33,8 +33,13 @@
                 type="text"
                 name="email"
                 id="email"
-                class="w-full bg-slate-100 text-dark p-3 rounded-md focus:outline-none focus:ring-primary focus:ring-1 focus:border-primary"
+                value="{{ old('email') }}"
+                class="@error('email') is-invalid @enderror w-full bg-slate-100 text-dark p-3 rounded-md focus:outline-none focus:ring-primary focus:ring-1 focus:border-primary"
+                placeholder="Email"
               />
+              @error('email')
+                <div class="invalid-feedback">{{ $message }}</div>
+              @enderror
             </div>
             <div class="w-full px-4 mb-8">
               <label for="password" class="text-base font-bold text-primary"
@@ -44,8 +49,12 @@
                 type="password"
                 name="password"
                 id="password"
-                class="w-full bg-slate-100 text-dark p-3 rounded-md focus:outline-none focus:ring-primary focus:ring-1 focus:border-primary"
+                placeholder="Passworn"
+                class="@error('password') is-invalid @enderror w-full bg-slate-100 text-dark p-3 rounded-md focus:outline-none focus:ring-primary focus:ring-1 focus:border-primary"
               />
+              @error('password')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
             </div>
             <div class="w-full px-4 text-center mx-auto">
               <button

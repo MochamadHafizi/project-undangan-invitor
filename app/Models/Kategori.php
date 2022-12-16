@@ -16,4 +16,9 @@ class Kategori extends Model
     {
         return $this->hasMany(Undangan::class);
     }
+
+    public function tamu()
+    {
+        return $this->hasMany(Tamu::class);
+    }
 }

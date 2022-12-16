@@ -80,7 +80,7 @@
                   >
                 </li>
                 <div class="dropdown inline-block relative">
-                <a href="/login" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary inline-flex items-center">
+                <a href="/login" class="border-primary text-white py-2 mx-8 group-hover:text-primary inline-flex bg-primary rounded-full p-5">
                  Login
                 </a>
                 

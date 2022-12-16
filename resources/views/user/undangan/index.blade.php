@@ -43,7 +43,7 @@
                         <td class="px-4 py-3 text-sm">{{ $item->waktu }}</td>
                         <td class="px-4 py-3 text-sm">{{ $item->jam }}</td>
                         <td class="px-4 py-3 text-sm">{{ $item->tempat }}</td>
-                        <td class="px-4 py-3 text-sm">{{ $item->susunan_acara }}</td>
+                        <td class="px-4 py-3 text-sm"><a href="{{ route('data_acara', $item->id) }}" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-indigo-500 bg-indigo-100 rounded-lg focus:outline-none focus:shadow-outline-gray">+Acara</a></td>
                         <td class="px-4 py-3">
                             <form action="{{ route('undangan.destroy',$item->id) }}" method="Post">
                             <div class="flex items-center space-x-4 text-sm">
